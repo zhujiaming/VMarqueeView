@@ -15,7 +15,8 @@ import java.util.List;
 
 /**
  * Created by zhujiaming on 17/10/9.
- * 竖直滚动跑马灯效果
+ * 竖直向上循环滚动跑马灯效果View
+ *
  */
 
 public class VMarqueeView extends ListView {
