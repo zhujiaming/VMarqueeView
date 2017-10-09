@@ -3,7 +3,7 @@
 
 ##### 效果
 
-![](https://raw.githubusercontent.com/zhujiaming/VMarqueeView/master/effect.gif)
+<img src="https://raw.githubusercontent.com/zhujiaming/VMarqueeView/master/effect.gif" width="480px" height="800px"/>
 
 
 
