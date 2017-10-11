@@ -1,7 +1,6 @@
 package com.jm.vmarqueeview;
 
 import android.content.Context;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -23,7 +22,7 @@ public class VMarqueeView extends ListView {
 
     private int mDelayExChange = 1000; //滚动时间
     private int mDelayKeep = 3000;//停顿时间
-    private Handler mHandler = new Handler();
+//    private Handler mHandler = new Handler();//View中不建议使用Handler
     private VMarqueeRunnable mMarRunnable = new VMarqueeRunnable();
 
 
@@ -53,25 +52,34 @@ public class VMarqueeView extends ListView {
                 return false;
             }
         });
+
+        post(new Runnable() {
+            @Override
+            public void run() {
+                runScroll();
+            }
+        });
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        Log.i("zjm", "onAttachedToWindow run");
-        runScroll();
+        //该方法在onDraw之前任何时候调用，不确定在onMeasure之前还是之后调用。
+//        Log.i("zjm", "onAttachedToWindow run");
+//        runScroll();
     }
 
-    public void setmDelayExChange(int delayExChange) {
+
+    public void setelayExChange(int delayExChange) {
         this.mDelayExChange = delayExChange;
     }
 
-    public void setmDelayKeep(int delayKeep) {
+    public void setDelayKeep(int delayKeep) {
         this.mDelayKeep = delayKeep;
     }
 
     public void runScroll() {
-        mHandler.postDelayed(mMarRunnable, mDelayKeep);
+        postDelayed(mMarRunnable, mDelayKeep);
     }
 
     private class VMarqueeRunnable implements Runnable {
@@ -90,6 +98,10 @@ public class VMarqueeView extends ListView {
         }
     }
 
+    /**
+     * 无限循环Adapter
+     * @param <T>
+     */
     public static abstract class LooperAdapter<T> extends BaseAdapter {
         private List<T> mDatas = new ArrayList<>();
 

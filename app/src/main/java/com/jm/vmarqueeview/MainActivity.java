@@ -15,6 +15,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<String> messages = new ArrayList();
+    private VMarqueeView vMarqueeView;
 
     {
         messages.add("助力制造业强国梦想 奏响“新蓝海”时代强音");
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        VMarqueeView vMarqueeView = (VMarqueeView) findViewById(R.id.vmarqueeview);
+        vMarqueeView = (VMarqueeView) findViewById(R.id.vmarqueeview);
         vMarqueeView.setAdapter(new MyLooperAdapter(messages));
         vMarqueeView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -40,6 +41,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*@Override
+    protected void onStart() {
+        super.onStart();
+        ViewTreeObserver viewTreeObserver = vMarqueeView.getViewTreeObserver();
+        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                vMarqueeView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                int width = vMarqueeView.getMeasuredWidth();
+                int height = vMarqueeView.getMeasuredHeight();
+            }
+        });
+
+
+        int widthMesureSpec = View.MeasureSpec.makeMeasureSpec((1 << 30) - 1, View.MeasureSpec.AT_MOST);
+        int heightMesureSpec = View.MeasureSpec.makeMeasureSpec((1 << 30) - 1, View.MeasureSpec.AT_MOST);
+        vMarqueeView.measure(widthMesureSpec, heightMesureSpec);
+    }*/
 
     private class MyLooperAdapter extends VMarqueeView.LooperAdapter<String> {
 
