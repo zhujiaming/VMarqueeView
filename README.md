@@ -3,7 +3,7 @@
 
 ##### 效果
 
-<img src="https://raw.githubusercontent.com/zhujiaming/VMarqueeView/master/effect.gif" width="480px" height="800px"/>
+<img src="https://raw.githubusercontent.com/zhujiaming/VMarqueeView/master/effect.gif" width="320px" height="480px"/>
 
 
 

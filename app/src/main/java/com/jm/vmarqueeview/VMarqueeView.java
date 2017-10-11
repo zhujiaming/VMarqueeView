@@ -69,6 +69,12 @@ public class VMarqueeView extends ListView {
 //        runScroll();
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        //当包含此View的Activity退出或View被remove后调用
+        removeCallbacks(mMarRunnable);
+    }
 
     public void setelayExChange(int delayExChange) {
         this.mDelayExChange = delayExChange;
